@@ -1,0 +1,238 @@
+/* ==========================================================
+   Glosario de trabajos académicos
+   Edita los colores y medidas desde las variables de :root
+   ========================================================== */
+
+:root {
+  /* Superficies */
+  --fondo: #05070b;
+  --superficie: #0d1117;
+  --superficie-alta: #131922;
+  --borde: #1e2733;
+
+  /* Texto */
+  --texto: #e9eef5;
+  --texto-suave: #9aa6b6;
+
+  /* Acentos neón */
+  --cian: #22e5ff;
+  --azul: #3b82ff;
+  --morado: #a855f7;
+
+  /* Medidas */
+  --radio: 14px;
+  --ancho-max: 1200px;
+  --espacio: clamp(1rem, 3vw, 2rem);
+
+  --fuente: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--fuente);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--texto);
+  background-color: var(--fondo);
+  background-image:
+    radial-gradient(60rem 30rem at 15% -10%, rgba(59, 130, 255, 0.12), transparent 60%),
+    radial-gradient(50rem 28rem at 95% 0%, rgba(168, 85, 247, 0.10), transparent 60%);
+  background-repeat: no-repeat;
+}
+
+/* ---------- Cabecera ---------- */
+
+.cabecera {
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 5rem) var(--espacio) clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.cabecera__titulo {
+  margin: 0;
+  max-width: 18ch;
+  font-size: clamp(2rem, 5.5vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--texto);
+}
+
+.cabecera__titulo::after {
+  content: "";
+  display: block;
+  width: 5rem;
+  height: 3px;
+  margin-top: 1.25rem;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--cian), var(--azul), var(--morado));
+  box-shadow: 0 0 14px rgba(34, 229, 255, 0.45);
+}
+
+/* ---------- Contenedor general ---------- */
+
+.contenido {
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: 0 var(--espacio) clamp(3rem, 8vw, 6rem);
+}
+
+.parciales {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: var(--espacio);
+  align-items: start;
+}
+
+/* ---------- Sección de parcial ---------- */
+
+.parcial {
+  position: relative;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  background: linear-gradient(180deg, var(--superficie-alta), var(--superficie) 40%);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  overflow: hidden;
+}
+
+/* Línea de luz superior */
+.parcial::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cian), var(--azul) 55%, var(--morado));
+  box-shadow: 0 0 18px rgba(34, 229, 255, 0.35);
+}
+
+.parcial__titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.4rem, 2.6vw, 1.75rem);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--cian);
+  text-shadow: 0 0 18px rgba(34, 229, 255, 0.35);
+}
+
+.parcial__titulo::before {
+  content: "";
+  flex: none;
+  width: 4px;
+  height: 1.4em;
+  border-radius: 4px;
+  background: linear-gradient(180deg, var(--cian), var(--morado));
+}
+
+/* ---------- Lista de trabajos ---------- */
+
+.lista {
+  display: grid;
+  gap: 0.625rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.trabajo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--borde);
+  border-left: 2px solid rgba(59, 130, 255, 0.55);
+  border-radius: 10px;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.trabajo:hover,
+.trabajo:focus-within {
+  background-color: rgba(34, 229, 255, 0.04);
+  border-color: rgba(34, 229, 255, 0.35);
+  border-left-color: var(--cian);
+  box-shadow: 0 0 18px rgba(34, 229, 255, 0.08);
+}
+
+.trabajo__nombre {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--texto);
+  font-size: 0.975rem;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Enlace ---------- */
+
+.trabajo__enlace {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 5rem;
+  min-height: 2.75rem; /* área táctil cómoda */
+  padding: 0 1.1rem;
+  font-size: 0.925rem;
+  font-weight: 600;
+  color: var(--cian);
+  text-decoration: none;
+  background-color: rgba(34, 229, 255, 0.06);
+  border: 1px solid rgba(34, 229, 255, 0.35);
+  border-radius: 8px;
+  transition: color 0.2s ease, background-color 0.2s ease,
+              border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.trabajo__enlace:hover {
+  color: var(--fondo);
+  background-color: var(--cian);
+  border-color: var(--cian);
+  box-shadow: 0 0 16px rgba(34, 229, 255, 0.4);
+}
+
+.trabajo__enlace:focus-visible {
+  outline: 2px solid var(--morado);
+  outline-offset: 3px;
+}
+
+.trabajo__enlace:active {
+  transform: translateY(1px);
+}
+
+/* ---------- Pantallas pequeñas ---------- */
+
+@media (max-width: 480px) {
+  .trabajo {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 0.875rem;
+  }
+
+  .trabajo__enlace {
+    width: 100%;
+  }
+}
+
+/* ---------- Accesibilidad ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
